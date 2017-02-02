@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
 			if($text == "อีกาดำ"){
 				$sendtext = "คนที่เหนือกว่าเขาทุกอย่าง คือ ผม อีกาดำ";
 			}else if($text == "zombie"){
-				$sendtext = "แล้ววันนี้ เขาจะถูกฝั่งอยู่ในความทรงจำ ";
+				$sendtext = "แล้ววันนี้ เขาจะถูกฝั่งอยู่ในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
 			}else{
 				$sendtext = "การแข่งขันยอมมีแพ้ชนะเสมอ https://www.youtube.com/watch?v=dwlJbb0o8V8";
 			}
