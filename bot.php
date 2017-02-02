@@ -1,6 +1,6 @@
 
 <?php
-$access_token = 'bBBopbyU12SrtYUjHBtOkJs0WRVnY/xs5nD6DnULKevoT6NHiuN+mQg7BS7EYMUsVOzMm+xCENitBtKnb300JmaMhR2dl3SzseTWAgY0Cwst5QqgyFqXGkpBLFuyE5PsKBjuJq8UvzQO31jCYgQcCwdB04t89/1O/w1cDnyilFU=';
+$access_token = '';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -16,7 +16,7 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			if($text == "อีกาดำ"){
 				$sendtext = "คนที่เหนือกว่าเขาทุกอย่าง คือ ผม อีกาดำ";
-			}else if($text == "zombie"){
+			}else if(strtoupper($text) == "zombie"){
 				$sendtext = "แล้ววันนี้ เขาจะถูกฝั่งอยู่ในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
 			}else if($text == "อีกาดำสุดยอด"){
 				$sendtext = "การแข่งขันยอมมีแพ้ชนะเสมอ https://www.youtube.com/watch?v=dwlJbb0o8V8";
