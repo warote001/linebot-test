@@ -14,13 +14,32 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+			$pattern = {"กาก","zombie","ความเชื่อ","อีกาดำ"};
+			foreach($pattern as $pattern){
+				preg_match($pattern,$text,$matches);
+				if($matches){
+					switch($matches[1]){
+						case "กาก" : $sendtext = "วันนี้ เขาจะถูกฝังเป็นเพียงแค่ความทรงจำ";
+							    break;
+						case "zombie" : $sendtext = "https://www.youtube.com/watch?v=B6h5iJJtevo";
+							    break;
+						case "อีกาดำ" : $sendtext = "คนที่เหนือกว่าเขาทุกอย่าง คือ ผม อีกาดำ";
+							    break;
+						case "ความเชื่อ" : $sendtext = "https://www.youtube.com/watch?v=zsLC776fLi0";
+							    break;
+						case default : $sendtext = ".....";
+							    break;
+					}
+					break;
+				}
+			}
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $text
+				'text' => $sendtext
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -46,3 +65,4 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
+?>
