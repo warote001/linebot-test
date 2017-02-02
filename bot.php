@@ -14,7 +14,13 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
-			$sendtext = "คนที่เหนือกว่าเขาทุกอย่าง คือ ผม อีกาดำ";
+			if($text == "อีกาดำ"){
+				$sendtext = "คนที่เหนือกว่าเขาทุกอย่าง คือ ผม อีกาดำ";
+			}else if($text == "zombie"){
+				$sendtext = "แล้ววันนี้ เขาจะถูกฝั่งอยู่ในความทรงจำ ";
+			}else{
+				$sendtext = "การแข่งขันยอมมีแพ้ชนะเสมอ https://www.youtube.com/watch?v=dwlJbb0o8V8";
+			}
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
