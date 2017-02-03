@@ -1,13 +1,6 @@
 
 <?php
-function respondtext($text,$replyToken){
-	if($text == "อีกาดำ"){
-		$sendtext = "คนที่เหนือกว่าเขาทุกอย่างคือ ผม อีกาดำ";
-	}else if(strtoupper($text) == "ZOMBIE"){
-		$sendtext = "และวันนี้เขาจะฝุกฝังในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
-	}else if($text == "ความเชื่อ"){
-		$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
-	}
+function respondtext($sendtext,$replyToken){
 	// Build message to reply back
 	$messages = [
 			'type' => 'text',
@@ -50,7 +43,14 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-			respondtext($text,$replytoken);
+			if($text == "อีกาดำ"){
+				$sendtext = "คนที่เหนือกว่าเขาทุกอย่างคือ ผม อีกาดำ";
+			}else if(strtoupper($text) == "ZOMBIE"){
+				$sendtext = "และวันนี้เขาจะฝุกฝังในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
+			}else if($text == "ความเชื่อ"){
+				$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
+			}
+			respondtext($sendtext,$replytoken);
 			echo $result . "\r\n";
 		}
 	}
