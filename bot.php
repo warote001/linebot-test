@@ -40,7 +40,6 @@ function respondimage($sendimg,$replyToken){
 	
 }
 $access_token = '';
-
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -71,7 +70,9 @@ if (!is_null($events['events'])) {
 				respondtext($sendtext,$replytoken);
 				echo $result . "\r\n";
 			}else if($text == "อีกาดำ ถอดหน้ากาก"){
-				leavechat();
+				$room = $event['source'];
+				respondtext($room,$replytoken);
+				echo $result . "\r\n";
 			}
 		}
 	}
