@@ -10,7 +10,7 @@ function replytext($text,$event){
 	}else if(strtoupper($text) == "JOHN"){
 		$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
 	}else if($text == "อีกาดำ ถอดหน้ากาก"){
-		$sendtext = $event['source'];
+		$sendtext = "ลาก่อย";
 	}
 	return $sendtext;
 }
