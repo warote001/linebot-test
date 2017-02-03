@@ -24,7 +24,19 @@ function respondtext($sendtext,$replyToken){
 	$result = curl_exec($ch);
 	curl_close($ch);
 }
-function respondimage($text){
+function leavechat(){
+	// Make a POST Request to Messaging API to reply to sender
+	$url = 'POST https://api.line.me/v2/bot/group/{groupId}/leave';
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
+}
+function respondimage($sendimg,$replyToken){
 	
 }
 $access_token = '';
@@ -47,11 +59,20 @@ if (!is_null($events['events'])) {
 				$sendtext = "คนที่เหนือกว่าเขาทุกอย่างคือ ผม อีกาดำ";
 			}else if(strtoupper($text) == "ZOMBIE"){
 				$sendtext = "และวันนี้เขาจะฝุกฝังในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
+				respondtext($sendtext,$replytoken);
+				echo $result . "\r\n";
 			}else if($text == "ความเชื่อ"){
 				$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
+				respondtext($sendtext,$replytoken);
+				echo $result . "\r\n";
+			}else if(strtoupper($text) == "JOHN"){
+				$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
+				respondimage($sendimg,$replytoken);
+				respondtext($sendtext,$replytoken);
+				echo $result . "\r\n";
+			}else if($text == "อีกาดำ ถอดหน้ากาก"){
+				leavechat();
 			}
-			respondtext($sendtext,$replytoken);
-			echo $result . "\r\n";
 		}
 	}
 }
