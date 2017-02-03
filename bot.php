@@ -58,17 +58,17 @@ if (!is_null($events['events'])) {
 				$sendtext = "คนที่เหนือกว่าเขาทุกอย่างคือ ผม อีกาดำ";
 			}else if(strtoupper($text) == "ZOMBIE"){
 				$sendtext = "และวันนี้เขาจะฝุกฝังในความทรงจำ https://www.youtube.com/watch?v=B6h5iJJtevo";
- 				respondtext($sendtext,$replytoken);
+ 				respondtext($sendtext,$replyToken);
 			}else if($text == "ความเชื่อ"){
 				$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
- 				respondtext($sendtext,$replytoken);
+ 				respondtext($sendtext,$replyToken);
 			}else if(strtoupper($text) == "JOHN"){
 				$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
 // 				respondimage($sendimg,$replytoken);
-				respondtext($sendtext,$replytoken);
+				respondtext($sendtext,$replyToken);
 			}else if($text == "อีกาดำ ถอดหน้ากาก"){
 				$room = $event['source'];
- 				respondtext($room,$replytoken);
+ 				respondtext($room,$replyToken);
 			}
 // 			// Build message to reply back
 // 			$messages = [
