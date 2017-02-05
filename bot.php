@@ -64,11 +64,11 @@ if (!is_null($events['events'])) {
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
+			$data01 = [
 				'replyToken' => $replyToken,
 				'messages' => [$image],
 			];
-			$post = json_encode($data);
+			$post = json_encode($data01);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -80,7 +80,7 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 				
 			}
-			if($text == "อีกาดำ ถอดหน้ากากครับ"){
+			else if($text == "อีกาดำ ถอดหน้ากากครับ"){
 				
 			 $sourceType = $event['source']['roomId'];
 			 if($sourceType == "group"){
