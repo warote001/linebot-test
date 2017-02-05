@@ -16,7 +16,7 @@ function replytext($text){
 	}
 	return $sendtext;
 }
-function replyprocess($messages){
+function replyprocess($access_token,$replyToken,$messages){
 	// Make a POST Request to Messaging API to reply to sender
 	$url = 'https://api.line.me/v2/bot/message/reply';
 	$data = [
@@ -57,7 +57,7 @@ if (!is_null($events['events'])) {
 				'type' => 'text',
 				'text' => $sendtext
 			];
-			replyprocess($message);
+			replyprocess($access_token,$replyToken,$message);
 			
 			if(strtoupper($text) == "JOHN"){
 				// Build message to reply back
@@ -66,7 +66,7 @@ if (!is_null($events['events'])) {
 					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
    					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
 				];
-				replyprocess($image);
+				replyprocess($access_token,$replyToken,$image);
 				
 			}
 			
