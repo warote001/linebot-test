@@ -8,7 +8,7 @@ function replytext($text,$event){
 	}else if($text == "ความเชื่อ"){
 		$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
 	}else if(strtoupper($text) == "JOHN"){
-		$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
+		$sendtext = "นี่เพื่อนผม JOHN ";
 	}else if($text == "อีกาดำ ถอดหน้ากากครับ"){
 		$sendtext = "ลาก่อย";
 	}else{
@@ -59,14 +59,21 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 			
 			if($text == "อีกาดำ ถอดหน้ากากครับ"){
-			 $roomId = $event['source']['roomId'];
-			 $url = 'https://api.line.me/v2/bot/room/'.$roomId.'/leave';
+				
+			 $sourceType = $event['source']['roomId'];
+			 if($sourceType == "group"){
+			     $groupId = $event['source']['groupId'];
+			     $url = 'https://api.line.me/v2/bot/gruop/'.$groupId.'/leave';
+			 }else if($sourceType == "room"){
+			     $roomId = $event['source']['groupId'];
+			     $url = 'https://api.line.me/v2/bot/room/'.$roomId.'/leave'; 
+			 }
 			 $headers = array('Authorization: Bearer ' . $access_token);
 			 $ch = curl_init($url);
 			 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-// 			 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+ 			 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			 $result = curl_exec($ch);
 	
  			 echo $result . "\r\n";
