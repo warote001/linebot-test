@@ -59,16 +59,16 @@ if (!is_null($events['events'])) {
 			];
 			replyprocess($message);
 			
-// 			if(strtoupper($text) == "JOHN"){
-// 				// Build message to reply back
-// 				$image = [
-// 					'type' => 'image',
-// 					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
-//    					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
-// 				];
-// 				replyprocess($image);
+			if(strtoupper($text) == "JOHN"){
+				// Build message to reply back
+				$image = [
+					'type' => 'image',
+					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
+   					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
+				];
+				replyprocess($image);
 				
-// 			}
+			}
 			
 		}	
 	}
