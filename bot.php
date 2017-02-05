@@ -11,25 +11,18 @@ function replytext($text,$event){
 		$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
 	}else if($text == "อีกาดำ ถอดหน้ากาก"){
 		$sendtext = "ลาก่อย";
+	}else{
+		$sendtext = "001";
 	}
 	return $sendtext;
 }
 function leavechat(){
-// 	// Make a POST Request to Messaging API to reply to sender
-// 	$url = 'POST https://api.line.me/v2/bot/group/{groupId}/leave';
-// 	$ch = curl_init($url);
-// 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-// 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-// 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-// 	$result = curl_exec($ch);
-// 	curl_close($ch);
+
 }
 function respondimage($sendimg,$replyToken){
 	
 }
-$access_token = '';
+$access_token = 'bBBopbyU12SrtYUjHBtOkJs0WRVnY/xs5nD6DnULKevoT6NHiuN+mQg7BS7EYMUsVOzMm+xCENitBtKnb300JmaMhR2dl3SzseTWAgY0Cwst5QqgyFqXGkpBLFuyE5PsKBjuJq8UvzQO31jCYgQcCwdB04t89/1O/w1cDnyilFU=';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -45,12 +38,12 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			$sendtext = replytext($text,$event);
+
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $sendtext
 			];
-
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -59,7 +52,6 @@ if (!is_null($events['events'])) {
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -68,9 +60,22 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
+	
 			echo $result . "\r\n";
-		}
+			if($text == "อีกาดำ ถอดหน้ากาก"){
+			 $url = 'https://api.line.me/v2/bot/room/{roomId}/leave';
+			 $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			 $ch = curl_init($url);
+			 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			 $result = curl_exec($ch);
+			 curl_close($ch);
+	
+ 			 echo $result . "\r\n";
+			}
+		}	
 	}
 }
 echo "OK";
