@@ -62,9 +62,9 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 	
 			echo $result . "\r\n";
-			if($text == "อีกาดำ ถอดหน้ากาก"){
+			if($text == "อีกาดำ ถอดหน้ากากครับ"){
 			 $url = 'https://api.line.me/v2/bot/room/{roomId}/leave';
-			 $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			 $headers = array('Authorization: Bearer ' . $access_token);
 			 $ch = curl_init($url);
 			 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
