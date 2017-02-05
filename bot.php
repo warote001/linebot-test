@@ -16,9 +16,6 @@ function replytext($text,$event){
 	}
 	return $sendtext;
 }
-function leavechat(){
-
-}
 function respondimage($sendimg,$replyToken){
 	
 }
@@ -63,7 +60,8 @@ if (!is_null($events['events'])) {
 	
 			echo $result . "\r\n";
 			if($text == "อีกาดำ ถอดหน้ากากครับ"){
-			 $url = 'https://api.line.me/v2/bot/room/{roomId}/leave';
+			 $roomId = $event['source']['roomId'];
+			 $url = 'https://api.line.me/v2/bot/room/{'.$roomId.'}/leave';
 			 $headers = array('Authorization: Bearer ' . $access_token);
 			 $ch = curl_init($url);
 			 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
