@@ -9,7 +9,7 @@ function replytext($text,$event){
 		$sendtext = "ที่ผ่านมา หมูป่าชนะมาได้ก็เป็นเพียงแค่โชคช่วย https://www.youtube.com/watch?v=aKYdF61sO2c";
 	}else if(strtoupper($text) == "JOHN"){
 		$sendtext = "นี่เพื่อนผม JOHN ที่ตอบได้แต่ค้าบ";
-	}else if($text == "อีกาดำ ถอดหน้ากาก"){
+	}else if($text == "อีกาดำ ถอดหน้ากากครับ"){
 		$sendtext = "ลาก่อย";
 	}else{
 		$sendtext = "001";
