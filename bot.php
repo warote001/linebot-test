@@ -1,6 +1,6 @@
 
 <?php
-function replytext($text,$event){
+function replytext($text){
 	if($text == "อีกาดำ"){
 		$sendtext = "คนที่เหนือกว่าเขาทุกอย่างคือ ผม อีกาดำ";
 	}else if(strtoupper($text) == "ZOMBIE"){
@@ -15,6 +15,25 @@ function replytext($text,$event){
 		$sendtext = "001";
 	}
 	return $sendtext;
+}
+function replyprocess($message){
+	// Make a POST Request to Messaging API to reply to sender
+	$url = 'https://api.line.me/v2/bot/message/reply';
+	$data = [
+		'replyToken' => $replyToken,
+		'messages' => [$messages],
+	];
+	$post = json_encode($data);
+	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	echo $result . "\r\n";
 }
 $access_token = 'bBBopbyU12SrtYUjHBtOkJs0WRVnY/xs5nD6DnULKevoT6NHiuN+mQg7BS7EYMUsVOzMm+xCENitBtKnb300JmaMhR2dl3SzseTWAgY0Cwst5QqgyFqXGkpBLFuyE5PsKBjuJq8UvzQO31jCYgQcCwdB04t89/1O/w1cDnyilFU=';
 // Get POST body content
@@ -31,77 +50,26 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-			$sendtext = replytext($text,$event);
+			$sendtext = replytext($text);
 
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $sendtext
 			];
-			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			echo $result . "\r\n";
+			replayprocess($message);
 			
 			if(strtoupper($text) == "JOHN"){
-			// Build message to reply back
-			$image = [
-				'type' => 'image',
-				'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
-   				'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
-			];
-			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data01 = [
-				'replyToken' => $replyToken,
-				'messages' => [$image],
-			];
-			$post = json_encode($data01);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			echo $result . "\r\n";
+				// Build message to reply back
+				$image = [
+					'type' => 'image',
+					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
+   					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
+				];
+				replyprocess($image);
 				
-			}
-			else if($text == "อีกาดำ ถอดหน้ากากครับ"){
-				
-			 $sourceType = $event['source']['roomId'];
-			 if($sourceType == "group"){
-			     $groupId = $event['source']['groupId'];
-			     $url = 'https://api.line.me/v2/bot/gruop/'.$groupId.'/leave';
-			 }else if($sourceType == "room"){
-			     $roomId = $event['source']['groupId'];
-			     $url = 'https://api.line.me/v2/bot/room/'.$roomId.'/leave'; 
-			 }
-			 $headers = array('Authorization: Bearer ' . $access_token);
-			 $ch = curl_init($url);
-			 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
- 			 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			 $result = curl_exec($ch);
-	
- 			 echo $result . "\r\n";
 			}
 			
-			curl_close($ch);
 		}	
 	}
 }
