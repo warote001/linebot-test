@@ -59,20 +59,20 @@ if (!is_null($events['events'])) {
 			];
 			replyprocess($access_token,$data);
 			
-// 			if(strtoupper($text) == "JOHN"){
-// 				// Build message to reply back
-// 				$image = [
-// 					'type' => 'image',
-// 					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
-//    					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
-// 				];
-// 				$data = [
-// 					'replyToken' => $replyToken,
-// 					'messages' => [$image],
-// 				];
-// 				replyprocess($access_token,$data);
+			if(strtoupper($text) == "JOHN"){
+				// Build message to reply back
+				$image = [
+					'type' => 'image',
+					'originalContentUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg",
+   					'previewImageUrl': "https://github.com/warote001/linebot-test/blob/master/imagebottest/chucknoland.jpg"
+				];
+				$data = [
+					'replyToken' => $replyToken,
+					'messages' => [$image],
+				];
+				replyprocess($access_token,$data);
 				
-// 			}
+			}
 			
 		}	
 	}
