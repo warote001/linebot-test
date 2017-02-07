@@ -31,7 +31,7 @@ function replyprocess($access_token,$data){
 	curl_close($ch);
 	echo $result . "\r\n";
 }
-$access_token = 'bBBopbyU12SrtYUjHBtOkJs0WRVnY/xs5nD6DnULKevoT6NHiuN+mQg7BS7EYMUsVOzMm+xCENitBtKnb300JmaMhR2dl3SzseTWAgY0Cwst5QqgyFqXGkpBLFuyE5PsKBjuJq8UvzQO31jCYgQcCwdB04t89/1O/w1cDnyilFU=';
+$access_token = '';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
